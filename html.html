@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Story Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #008080;
+        }
+        #intro {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        #imageContainer {
+            margin: 20px;
+        }
+        #randomStory {
+            font-size: 1.5em;
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            font-size: 1em;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #008080;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #005555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Story Generator</h1>
+    <div id="intro">Seeking inspirations for writing a story?</div>
+    <div id="imageContainer">
+        <img src="Pic1.jpeg" alt="Looking for inspirations?" width="300">
+    </div>
+    <div id="randomStory"></div>
+    <button onclick="generateStory()">Generate Story</button>
+
+    <script>
+        const nouns = ["Mom", "Professor", "Lily", "Sister", "Daughter", "Waitress", "Bride","Driver","Chef","Captain"];
+        const verb1 = ['laughs','cries' ,'smiles','screams','frowns','blushes','weeps','sobs','winks','shouts',
+'freezes','sneers'];
+        const verb2 = ["leave", "believe", "receive", "reprieve", "relieve", "disbelieve", "prove"];
+        const adjectives = ["brave", "naive", "vive", "relieved", "grieved", "aggrieved", "misconceived", "disbelieved", "alive", "captive", "furtive"];
+
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function generateStory() {
+            const story = `${getRandomElement(nouns)} ${getRandomElement(verb1)} and says she’ll ${getRandomElement(verb2)}. 
+            I’ve never thought I could feel so ${getRandomElement(adjectives)}.`;
+            
+            document.getElementById("randomStory").innerText = story;
+
+            // Change image after generating the story
+            document.getElementById("imageContainer").innerHTML = '<img src="Pic2.jpeg" alt="Some starting points" width="300">';
+
+            // Change button text and function
+            const button = document.querySelector('button');
+            button.innerText = 'Regenerate Story';
+            button.onclick = regenerateStory;
+        }
+
+        function regenerateStory() {
+            // Reset image and generate a new story
+            document.getElementById("imageContainer").innerHTML = '<img src="Pic1.jpeg" alt="Looking for inspirations?" width="300">';
+            generateStory();
+        }
+    </script>
+</body>
+</html>
